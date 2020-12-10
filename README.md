@@ -5,6 +5,7 @@
   <a href="./data/sample_0.png">
     <img src="./data/sample_0.png" alt="Sample image" width="300" height="300" >
     <img src="./figures/sample_0_out.png" alt="Sample image output" width="300" height="300">
+  </a>
 </p>
 
 <!-- TABLE OF CONTENTS -->

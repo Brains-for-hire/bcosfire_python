@@ -1,4 +1,4 @@
-# A Python implementation of BCOSFIRE  
+# Python implementation of BCOSFIRE  
 
 
 <p align="center">
@@ -37,9 +37,19 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This is a Python implementation of the B-COSFIRE algorithm, which was originally posted [here](https://de.mathworks.com/matlabcentral/fileexchange/49172-trainable-cosfire-filters-for-curvilinear-structure-delineation-in-images).
+This is a Python implementation of the B-COSFIRE algorithm, which was originally [implemented](https://de.mathworks.com/matlabcentral/fileexchange/49172-trainable-cosfire-filters-for-curvilinear-structure-delineation-in-images) in MATLAB by Nicola Strisciuglio et. al. Please find the B-COSFIRE paper [here](http://dx.doi.org/10.1016/j.media.2014.08.002) (2015).
 
-B-COSFIRE aims to detect elongated patterns in images such as blood vessels in retinal images. It uses the existing COSFIRE (Combination Of Shifted Filter Responses) algorithm to get orientation selectivity. More specifically, the algorithm computes the weighted geometric mean of the output of a pool of Difference-of-Gaussians filters to detect vessel-like patterns in images, see the algorithm details in [paper](http://dx.doi.org/10.1016/j.media.2014.08.002).
+The B-COSFIRE filter aims to segment elongated patterns in images such as blood vessels in retinal images. It is based on an existing filter, so-called Combination Of Shifted FIlter Responses (COSFIRE). While the COSFIRE filters are used to detect bifurcations in the retinal images, the B-COSFIRE filters (as B stands for bar) are used to detect bar-like structures (e.g. vessels) in the images. Please check [the COSFIRE paper](https://www.sciencedirect.com/science/article/abs/pii/S0167865512003625) (2013) to understand the basics of the algorithm. 
+
+The core of the B-COSFIRE algorithm relies on the [Difference-of-Gaussians](https://en.wikipedia.org/wiki/Difference_of_Gaussians) (DoG) filters which are used for detecting lines and edges. Since the vessels in the retinal images vary in orientation and thickness, it is a challenging task to define convenient filters for such a complexity. The B-COSFIRE algorithm comes up with a smart idea for this challenge:
+
+1) The user provides a vessel-like prototype pattern, e.g., a bar.
+2) The pattern is filtered with a DoG filter followed by a blur operation in order to reduce the noise.
+3) The positions of the maximum points on the bar are marked by using a circle strategy.
+4) A DoG filter is defined for each position.
+5) The input image (e.g. retinal image) is filtered with the shifted DoG filters, and this results in the DoG responses.
+6) The weighted geometric mean of the DoG responses give the output of the B-COSFIRE filter.  
+
 
 ### Built With
 You need `python3` for this project. 

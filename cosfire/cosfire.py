@@ -1,3 +1,28 @@
+#!/usr/bin/env python
+
+""" 
+
+This module defines the circle strategy in the B-COSFIRE algorithm. Please find the detailed description in Section 2 of the B-COSFIRE paper. 
+
+Circle strategy is used to determine the dominant filters for a pre-defined prototype pattern, a bar in our case, which can be used later to detect similar patterns in images. Here is a quick guideline of the strategy for the vertical bar:
+
+1) The bar is filtered by using the pre-defined filter (e.g. filters.DoGFilter).
+2) A circle is drawn at the point of interest (or support center), which is the center of the bar.
+3) The findTuples function finds the positions of local maxima along this circle and returns the parameters (sigma,x',y') of the B-COSFIRE filter on these local maxima points.
+4) The computeResponses function applies the filters (i.e. computed by the previous step) iteratively by blurring and shifting the filters such that the DoG responses meet at the support center.
+5) The output of the B-COSFIRE filter is the weighted geometric mean of all the blurred and shifted DoG responses. 
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the BSD General Public License as published by The COSFIRE Consolidation Project, version 0.0.1.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the BSD General Public License for more details.
+You should have received a copy of the BSD General Public License along with
+this program. If not, see https://github.com/Brains-for-hire/bcosfire_python/blob/main/LICENSE.
+"""
+
+
 from sklearn.base import BaseEstimator, TransformerMixin
 import math as m
 import numpy as np
@@ -6,6 +31,7 @@ import time
 from .utilities import ImageStack
 from .functions import shiftImage,circularPeaks,unique
 from .filters import GaussianFilter
+
 
 class COSFIRE(BaseEstimator, TransformerMixin):
 
@@ -44,7 +70,7 @@ class CircleStrategy(BaseEstimator, TransformerMixin):
 
 	def fit(self):
 		self.protoStack = ImageStack().push(self.prototype).applyFilter(self.filt, self.filterArgs)
-		self.protoStack.treshold = self.T2
+		self.protoStack.threshold = self.T2
 		self.tuples = self.findTuples()
 
 	def transform(self, subject):

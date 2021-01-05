@@ -1,8 +1,6 @@
-import numpy as np
-import cosfire as c
+#!/usr/bin/env python
 
-
-""" A Python implementation of the B-COSFIRE algorithm.
+""" Python implementation of the B-COSFIRE algorithm.
 
 B-COSFIRE aims to detect elongated patterns in images such as blood vessels in retinal images. 
 It uses the existing COSFIRE (Combination Of Shifted Filter Responses) algorithm to get orientation selectivity. 
@@ -19,6 +17,8 @@ this program. If not, see https://github.com/Brains-for-hire/bcosfire_python/blo
 """
 
 
+import numpy as np
+import cosfire as c
 
 def BCOSFIRE(img_rgb, mask=[]):
 	## Model configuration

@@ -1,3 +1,18 @@
+#!/usr/bin/env python
+
+""" 
+This module provides basic functionalities for an image stack such as applying filters for each layer.
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the BSD General Public License as published by The COSFIRE Consolidation Project, version 0.0.1.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the BSD General Public License for more details.
+You should have received a copy of the BSD General Public License along with
+this program. If not, see https://github.com/Brains-for-hire/bcosfire_python/blob/main/LICENSE.
+"""
+
 import numpy as np
 
 class ImageObject():

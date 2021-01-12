@@ -70,7 +70,7 @@ You can install the repository and required Python packages by following the ste
   ```
 <!-- USAGE EXAMPLES -->
 ## Usage
-To run the BCOSFIRE algorithm on the sample image `./data/sample_0.tif`, you can run the following command in the terminal.
+To run the BCOSFIRE algorithm on the sample image `./data/sample_0.png`, you can run the following command in the terminal.
   ```sh
   python3 BCOSFIRE.py ./data/sample_0.tif
   ```

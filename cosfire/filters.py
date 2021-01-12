@@ -56,18 +56,18 @@ class CLAHE(FunctionFilter):
         clahe = cv2.createCLAHE(tileGridSize=(8, 8), clipLimit=0.01, distribution='uniform', alpha=0.4)
         super().__init__(_CLAHE, clahe)
 
-    # Executes a 2D convolution by using a 1D kernel twice
-    def _sepFilter2D(image, kernel):
-        return cv2.sepFilter2D(image, -1, kernel, kernel)
+# Executes a 2D convolution by using a 1D kernel twice
+def _sepFilter2D(image, kernel):
+    return cv2.sepFilter2D(image, -1, kernel, kernel)
 
-    # Executes a 2D convolution by using a 2D kernel
-    def _Filter2D(image, kernel):
-        result = signal.convolve(image, kernel, mode='same')
-        return result
+# Executes a 2D convolution by using a 2D kernel
+def _Filter2D(image, kernel):
+    result = signal.convolve(image, kernel, mode='same')
+    return result
 
-    # Executes Contrast Limited Adaptive Histogram Equalization
-    def _CLAHE(image, clahe):
-        return clahe.apply(image)
+# Executes Contrast Limited Adaptive Histogram Equalization
+def _CLAHE(image, clahe):
+    return clahe.apply(image)
 
-    def sigma2sz(sigma):
-        return int(np.ceil(sigma*3))*2 + 1; # Guaranteed to be odd
+def sigma2sz(sigma):
+    return int(np.ceil(sigma*3))*2 + 1; # Guaranteed to be odd
